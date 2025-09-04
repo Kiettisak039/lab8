@@ -1,5 +1,4 @@
 package com.example.lab6;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +27,8 @@ public class AddNoteActivity extends AppCompatActivity {
 
     TextView display1;
 
+    TextView display2;
+
     Button addcheck;
 
     @SuppressLint("MissingInflatedId")
@@ -51,11 +52,12 @@ public class AddNoteActivity extends AppCompatActivity {
             }
 
         });
-        addButton = findViewById(R.id.button2);
+        addButton = findViewById(R.id.button4);
         title = findViewById(R.id.editTextText5);
-        textContent = findViewById(R.id.editTextText2);
+        textContent = findViewById(R.id.editTextText6);
         display = findViewById(R.id.textView3);
         display1 = findViewById(R.id.textView);
+        display2 = findViewById(R.id.textView2);
         addcheck = findViewById(R.id.button5);
         name = findViewById(R.id.editTextText2);
         id = findViewById(R.id.editTextText4);
@@ -69,7 +71,8 @@ public class AddNoteActivity extends AppCompatActivity {
                 String strOfContent = textContent.getText().toString();
 
                 String strOfDate = new Date().toString();
-
+                String strOfName = name.getText().toString();
+                String strOfId = id.getText().toString();
 
                 //set data to TextNote class
                 TextNote note1 = new TextNote();
@@ -78,9 +81,12 @@ public class AddNoteActivity extends AppCompatActivity {
                 note1.setTextContent(strOfContent);
 
                 note1.createdDate = strOfDate;
-
+                TextUser user1 = new TextUser();
+                user1.setName(strOfName);
+                user1.setId(strOfId);
                 //show note on TextView
                 display.setText(note1.getSummary());
+                display2.setText(user1.getSummary());
             }
         });
         addcheck.setOnClickListener(new View.OnClickListener() {
