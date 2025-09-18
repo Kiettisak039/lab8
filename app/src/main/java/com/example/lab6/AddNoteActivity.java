@@ -1,5 +1,7 @@
 package com.example.lab6;
+
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Date;
+import java.util.concurrent.Executors;
 
 public class AddNoteActivity extends AppCompatActivity {
     Button addBack;
@@ -70,7 +73,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 String strOfTitle = title.getText().toString();
                 String strOfContent = textContent.getText().toString();
 
-                String strOfDate = new Date().toString();
+                Date strOfDate = new Date();
                 String strOfName = name.getText().toString();
                 String strOfId = id.getText().toString();
 
@@ -93,7 +96,7 @@ public class AddNoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String strOfTitle = title.getText().toString();
-                String strOfDate = new Date().toString();
+                Date strOfDate = new Date();
 
                 ChecklistNote note1 = new ChecklistNote();
                 note1.setTitle(strOfTitle);
@@ -101,6 +104,12 @@ public class AddNoteActivity extends AppCompatActivity {
                 note1.createdDate = strOfDate;
 
                 display1.setText(note1.getSummary());
+                NoteEntity enity = NoteMapper.toEntity(note1);
+
+                Context context = view.getContext();
+                Executors.newSingleThreadExecutor().execute(() -> {
+                    AppDatabase.getInstance(context).noteDao().insert(enity);
+                });
             }
         });
     }

@@ -3,7 +3,6 @@ package com.example.lab6;
 public class TextNote extends Note{
     //Attribute
     private  String textContent;
-
     //getter method
     public String getTextContent(){
         return textContent;

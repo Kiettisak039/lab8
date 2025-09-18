@@ -1,15 +1,17 @@
 package com.example.lab6;
 
+import java.util.Date;
+
 public abstract class Note {
     //Attribute
     public String title;
-    public String createdDate;
+    public Date createdDate;
     public User user;
     //getter method
     public String getTitle(){
         return title;
     }
-    public String getCreatedDate(){
+    public Date getCreatedDate(){
         return createdDate;
     }
     public User getUser(){
@@ -20,7 +22,7 @@ public abstract class Note {
         this.title = newTitle;
 
     }
-    public void setCreatedDate(String newCreatedDate){
+    public void setCreatedDate(Date newCreatedDate){
         this.createdDate=newCreatedDate;
     }
     public User getName(String newUser){this.user = user;

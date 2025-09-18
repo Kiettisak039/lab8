@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         addButton = findViewById(R.id.button2);//event aource
-        logo = findViewById(R.id.imageView);
+        logo = findViewById(R.id.cat);
         logo.setImageResource(R.drawable.t1);
 
         addButton.setOnClickListener(new View.OnClickListener() {//event listener
